@@ -16,12 +16,13 @@
 	<body>
 		<script src="js/game_mian.js"></script>
 		<script src="js/physicsOS.js"></script>
+		<script src="js/animationOS.js"></script>
 		<script>
 			var game_ = new gameMap();
-			game_.addLayer({
-				width:80,
-				height:222,
-				layer:'234c',
+			var layer1 = game_.creatLayer({
+				width:800,
+				height:600,
+				layer:'1',
 				name:'backgroud',
 				color:'lightskyblue'
 			});
@@ -29,7 +30,13 @@
 				r:20,
 				color:'blue'
 			});
-			debugger
+			arc1.fast_x = 1;
+			layer1.addObject(arc1);
+			Start();
+			function Start(){
+				layer1.LayerDraw();
+				window.requestAnimationFrame(Start)
+			}
 		</script>
 	</body>
 </html>

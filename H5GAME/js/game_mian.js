@@ -3,9 +3,21 @@ var LAYER = [];
 var gameMap = function(){
 	this.layer = LAYER;
 }
-var Layer = function(){
+var Layer = function(name,map,ctx,color){
+	this.layer_objects = [];
+	this.layer_name = name;
+	this.layer_canvas = map;
+	this.layer_ctx = ctx;
+	this.backgroud_color = color;
 }
-Layer.prototype.creatLayer = function(setting){
+Layer.prototype.addObject = function(obj){
+	this.layer_objects.push(obj);
+}
+Layer.prototype.LayerDraw = function(){
+	var animation = new Animation(this);//绑定动画
+	animation.Start();
+}
+gameMap.prototype.creatLayer = function(setting){
 	var map = document.createElement('canvas');
 	setting.name = setting.name || 'layer'+LAYER_BUMBER;
 	map.classList.add(setting.name);
@@ -20,7 +32,6 @@ Layer.prototype.creatLayer = function(setting){
 	map.width = setting.width;
 	map.height = setting.height;
 	map.style.position = 'absolute';
-	debugger
 	if(setting.layer != undefined && !isNaN(setting.layer)){
 		map.style.zIndex = setting.layer;
 	}
@@ -32,17 +43,10 @@ Layer.prototype.creatLayer = function(setting){
 	setting.color = setting.color || 'aquamarine';
 	ctx.fillStyle = setting.color;
 	ctx.fillRect(0,0,map.width,map.height);
-	LAYER.push({
-		map_name:name,
-		map_canvas:map,
-		map_ctx:ctx
-	});
+	var smlayer = new Layer(setting.name,map,ctx,setting.color);
+	LAYER.push(smlayer);
 	document.body.appendChild(map);
 	LAYER_BUMBER +=1;
-	return true;
+	return smlayer;
 }
-gameMap.prototype.addLayer = function(setting){
-	var layer = new Layer();
-	layer.creatLayer(setting);
-	return layer;
-}
+
