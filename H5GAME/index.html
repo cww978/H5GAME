@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			canvas{
+				box-shadow: 3px 3px 10px #655860;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/game_mian.js"></script>
+		<script src="js/physicsOS.js"></script>
+		<script>
+			var game_ = new gameMap();
+			game_.addLayer({
+				width:80,
+				height:222,
+				layer:'234c',
+				name:'backgroud',
+				color:'lightskyblue'
+			});
+			var arc1 = new arcObject({
+				r:20,
+				color:'blue'
+			});
+			debugger
+		</script>
+	</body>
+</html>
