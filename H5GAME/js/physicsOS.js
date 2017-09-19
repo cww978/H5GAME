@@ -4,6 +4,7 @@ var OBJECT_ID = 0;
 var physiccsObject = function(){
 	this.id = OBJECT_ID;
 	this.gravity_flag = true;
+	this.elastic = false;
 	this.x = 0,
 	this.y = 0,
 	this.fast_x = 0,
